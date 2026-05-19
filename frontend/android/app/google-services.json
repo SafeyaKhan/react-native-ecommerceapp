@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446543898166",
+    "project_id": "ecommapp-1e1ea",
+    "storage_bucket": "ecommapp-1e1ea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446543898166:android:204b647881d6406c699a97",
+        "android_client_info": {
+          "package_name": "com.ecommerceapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxTHcC88Ft7yMcF1-k-XS5eglQsOh579E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

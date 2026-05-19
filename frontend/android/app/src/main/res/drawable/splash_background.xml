@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background color (matches Lottie background) -->
+    <item android:drawable="@color/splash_bg" />
+
+    <!-- Centered logo -->
+    <!-- <item>
+        <bitmap
+            android:src="@drawable/launchscreen"
+            android:gravity="center"
+            android:tileMode="disabled"
+            android:antialias="true" />
+    </item> -->
+
+</layer-list>
