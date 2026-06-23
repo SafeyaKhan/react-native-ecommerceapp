@@ -93,3 +93,15 @@ coverage/
 # =========================
 **/Pods/
 vendor/bundle/
+# Android Native Build
+android/app/.cxx/
+android/app/build/
+android/.cxx/
+
+# CMake / NDK
+**/.cxx/
+**/build/
+
+# React Native generated files
+android/app/debug/
+android/app/release/
