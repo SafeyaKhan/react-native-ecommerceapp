@@ -20,60 +20,62 @@ const ReorderScreen = () => {
   return (
     <View style={styles.container}>
       <Header showBack={true} />
-      <FlatList
-        data={orders}
-        keyExtractor={item => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 20,
-        }}
-        renderItem={({ item }) => (
-          <View style={styles.orderCard}>
-            {/* Order Header */}
-            <View style={styles.rowBetween}>
-              <Text style={styles.orderId}>Order #{item.id}</Text>
+      <View style={{ paddingHorizontal: 10, paddingTop: 10 }}>
+        <FlatList
+          data={orders}
+          keyExtractor={item => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingBottom: 20,
+          }}
+          renderItem={({ item }) => (
+            <View style={styles.orderCard}>
+              {/* Order Header */}
+              <View style={styles.rowBetween}>
+                <Text style={styles.orderId}>Order #{item.id}</Text>
 
-              <Text style={styles.status}>{item.status}</Text>
-            </View>
-
-            <Text style={styles.date}>{item.date}</Text>
-
-            {/* Ordered Products */}
-            {item.items.map((product, index) => (
-              <View key={index} style={styles.productCard}>
-                <Image source={{ uri: product.image }} style={styles.image} />
-
-                <View style={styles.infoContainer}>
-                  <Text style={styles.productName}>{product.title}</Text>
-
-                  <Text style={styles.price}>${product.price}</Text>
-
-                  <Text style={styles.qty}>Qty: {product.qty}</Text>
-
-                  {product.selectedSize && (
-                    <Text style={styles.detail}>
-                      Size: {product.selectedSize}
-                    </Text>
-                  )}
-
-                  {product.selectedColor && (
-                    <Text style={styles.detail}>
-                      Color: {product.selectedColor}
-                    </Text>
-                  )}
-                </View>
+                <Text style={styles.status}>{item.status}</Text>
               </View>
-            ))}
 
-            {/* Total */}
-            <View style={styles.totalContainer}>
-              <Text style={styles.totalText}>Total:</Text>
+              <Text style={styles.date}>{item.date}</Text>
 
-              <Text style={styles.totalAmount}>${item.total.toFixed(2)}</Text>
+              {/* Ordered Products */}
+              {item.items.map((product, index) => (
+                <View key={index} style={styles.productCard}>
+                  <Image source={{ uri: product.image }} style={styles.image} />
+
+                  <View style={styles.infoContainer}>
+                    <Text style={styles.productName}>{product.title}</Text>
+
+                    <Text style={styles.price}>${product.price}</Text>
+
+                    <Text style={styles.qty}>Qty: {product.qty}</Text>
+
+                    {product.selectedSize && (
+                      <Text style={styles.detail}>
+                        Size: {product.selectedSize}
+                      </Text>
+                    )}
+
+                    {product.selectedColor && (
+                      <Text style={styles.detail}>
+                        Color: {product.selectedColor}
+                      </Text>
+                    )}
+                  </View>
+                </View>
+              ))}
+
+              {/* Total */}
+              <View style={styles.totalContainer}>
+                <Text style={styles.totalText}>Total:</Text>
+
+                <Text style={styles.totalAmount}>${item.total.toFixed(2)}</Text>
+              </View>
             </View>
-          </View>
-        )}
-      />
+          )}
+        />
+      </View>
     </View>
   );
 };
@@ -84,8 +86,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-    paddingHorizontal: 15,
-    paddingTop: 20,
+    // paddingHorizontal: 15,
+    // paddingTop: 20,
   },
 
   heading: {
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 15,
     marginBottom: 15,
+
     elevation: 4,
   },
 

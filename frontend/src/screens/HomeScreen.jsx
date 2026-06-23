@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
 
   categoryList: {
     paddingHorizontal: 15,
-    paddingVertical: 18,
+    paddingVertical: 10,
   },
 
   productRow: {

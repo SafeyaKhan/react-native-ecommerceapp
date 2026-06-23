@@ -1,14 +1,21 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-
-const {
+import {
   forgotPassword,
   resetPassword,
-} = require('../controllers/authController');
+} from '../controllers/authController.js';
+
+const router = express.Router();
+
+/* =========================
+   TEST ROUTE
+========================= */
+router.get('/', (req, res) => {
+  res.send('Auth route working');
+});
 
 /* =========================
    REGISTER
@@ -94,17 +101,13 @@ router.post('/login', async (req, res) => {
 });
 
 /* =========================
-   FORGOT PASSWORD
+   PASSWORD ROUTES
 ========================= */
 router.post('/forgot-password', forgotPassword);
-
-/* =========================
-   RESET PASSWORD (API)
-========================= */
 router.put('/reset-password/:token', resetPassword);
 
 /* =========================
-   RESET PASSWORD PAGE (WEB UI)
+   RESET PASSWORD PAGE (HTML)
 ========================= */
 router.get('/reset-password/:token', (req, res) => {
   const { token } = req.params;
@@ -114,126 +117,43 @@ router.get('/reset-password/:token', (req, res) => {
   }
 
   res.send(`
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Reset Password</title>
-</head>
+    <html>
+      <body>
+        <h2>Reset Password</h2>
 
-<body
-  style="
-    margin:0;
-    padding:0;
-    font-family: Arial, sans-serif;
-    background:#f5f5f5;
-  "
->
-  <div
-    style="
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    "
-  >
-    <div
-      style="
-        background:white;
-        padding:30px;
-        border-radius:10px;
-        width:320px;
-        box-shadow:0 0 10px rgba(0,0,0,0.1);
-      "
-    >
-      <h2 style="text-align:center;">Reset Password</h2>
+        <input type="password" id="password" placeholder="New password"/>
+        <input type="password" id="confirm" placeholder="Confirm password"/>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="New password"
-        style="
-          width:100%;
-          padding:12px;
-          margin-bottom:15px;
-          border:1px solid #ccc;
-          border-radius:5px;
-          box-sizing:border-box;
-        "
-      />
+        <button onclick="resetPassword()">Reset</button>
 
-      <input
-        type="password"
-        id="confirm"
-        placeholder="Confirm password"
-        style="
-          width:100%;
-          padding:12px;
-          margin-bottom:15px;
-          border:1px solid #ccc;
-          border-radius:5px;
-          box-sizing:border-box;
-        "
-      />
+        <p id="msg"></p>
 
-      <button
-        onclick="reset()"
-        style="
-          width:100%;
-          background-color:#e96e6e;
-          border:none;
-          border-radius:8px;
-          padding:12px;
-          color:white;
-          font-size:16px;
-          font-weight:600;
-          cursor:pointer;
-        "
-      >
-        Reset Password
-      </button>
+        <script>
+          async function resetPassword() {
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm').value;
+            const msg = document.getElementById('msg');
 
-      <p
-        id="msg"
-        style="
-          text-align:center;
-          margin-top:15px;
-          color:#333;
-        "
-      ></p>
-    </div>
-  </div>
+            if (password !== confirm) {
+              msg.innerText = "Passwords do not match";
+              return;
+            }
 
-  <script>
-    async function reset() {
-      const password = document.getElementById('password').value;
-      const confirm = document.getElementById('confirm').value;
-      const msg = document.getElementById('msg');
+            const res = await fetch("/api/auth/reset-password/${token}", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ password })
+            });
 
-      if (password !== confirm) {
-        msg.innerText = 'Passwords do not match';
-        return;
-      }
-
-      try {
-        const res = await fetch('/api/auth/reset-password/${token}', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ password }),
-        });
-
-        const data = await res.json();
-
-        msg.innerText = data.message;
-      } catch (err) {
-        msg.innerText = 'Something went wrong';
-      }
-    }
-  </script>
-</body>
-</html>
-`);
+            const data = await res.json();
+            msg.innerText = data.message;
+          }
+        </script>
+      </body>
+    </html>
+  `);
 });
 
-module.exports = router;
+export default router;

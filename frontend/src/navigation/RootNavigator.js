@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef } from '../navigation/NavigationService';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ActivityIndicator, View } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
@@ -48,6 +49,7 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer
+      ref={navigationRef}
       linking={linking}
       fallback={fallback}
       onReady={() => {

@@ -1,10 +1,15 @@
-const nodemailer = require('nodemailer');
-require('dotenv').config();
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 
+dotenv.config();
+
+/* =========================
+   TRANSPORTER
+========================= */
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
-  secure: false, // false for 587
+  secure: false, // true only for 465
 
   auth: {
     user: process.env.SMTP_EMAIL,
@@ -12,14 +17,22 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+/* =========================
+   SEND EMAIL FUNCTION
+========================= */
 const sendEmail = async (to, subject, text, html = null) => {
-  await transporter.sendMail({
-    from: process.env.SMTP_EMAIL,
-    to,
-    subject,
-    text,
-    html: html || text,
-  });
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_EMAIL,
+      to,
+      subject,
+      text,
+      html: html || text,
+    });
+  } catch (error) {
+    console.log('Email error:', error);
+    throw error;
+  }
 };
 
-module.exports = sendEmail;
+export default sendEmail;

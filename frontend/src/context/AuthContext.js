@@ -1,7 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import messaging from '@react-native-firebase/messaging';
+import { API } from '../config/api';
 
 export const AuthContext = createContext();
 
@@ -10,11 +11,37 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API =
-    Platform.OS === 'android'
-      ? 'http://10.0.2.2:5000/api/auth'
-      : 'http://localhost:5000/api/auth';
+  // 🔥 SAVE FCM TOKEN AFTER LOGIN
+  useEffect(() => {
+    const syncFcmToken = async () => {
+      try {
+        if (!user?._id) return;
 
+        const fcmToken = await messaging().getToken();
+
+        console.log('🔥 FCM Token:', fcmToken);
+
+        await fetch(`${API}/notifications/save-token`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: user._id,
+            fcmToken,
+          }),
+        });
+
+        console.log('✅ FCM token synced to backend');
+      } catch (error) {
+        console.log('❌ FCM sync error:', error);
+      }
+    };
+
+    syncFcmToken();
+  }, [user]);
+
+  // LOAD TOKEN ON APP START
   useEffect(() => {
     loadToken();
   }, []);
@@ -24,7 +51,6 @@ export const AuthProvider = ({ children }) => {
 
     if (storedToken) {
       setToken(storedToken);
-      // optionally fetch user profile
     }
 
     setLoading(false);
@@ -39,12 +65,8 @@ export const AuthProvider = ({ children }) => {
         password,
       });
 
-      console.log('BACKEND RESPONSE:', res.data);
-
       return { success: true, data: res.data };
     } catch (error) {
-      console.log('REGISTER ERROR:', error.response?.data || error.message);
-
       return {
         success: false,
         message: error.response?.data?.message || 'Registration failed',

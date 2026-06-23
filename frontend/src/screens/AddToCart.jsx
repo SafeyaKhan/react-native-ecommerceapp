@@ -69,7 +69,7 @@ const CartScreen = ({ navigation }) => {
       {cartItems.length === 0 ? (
         <Text style={styles.empty}>Your cart is empty 🛍️</Text>
       ) : (
-        <>
+        <View style={{ padding: 15 }}>
           <FlatList
             data={cartItems}
             keyExtractor={item => item.id.toString()}
@@ -85,7 +85,7 @@ const CartScreen = ({ navigation }) => {
               onPress={() => navigation.navigate('Checkout')}
             />
           </View>
-        </>
+        </View>
       )}
     </View>
   );
@@ -94,12 +94,12 @@ const CartScreen = ({ navigation }) => {
 export default CartScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 15, backgroundColor: '#fff' },
+  container: { flex: 1, backgroundColor: '#fff' },
   heading: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
   card: {
     flexDirection: 'row',
     backgroundColor: '#f6f6f6',
-    padding: 12,
+    padding: 10,
     borderRadius: 10,
     marginBottom: 10,
     alignItems: 'center',

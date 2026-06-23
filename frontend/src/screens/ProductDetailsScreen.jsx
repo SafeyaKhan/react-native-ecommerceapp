@@ -74,7 +74,7 @@ const ProductDetailsScreen = ({ route }) => {
         <Text style={styles.price}>${product.price}</Text>
       </View>
 
-      <View style={{ paddingHorizontal: 20, marginBottom: 20 }}>
+      <View style={{ paddingHorizontal: 20 }}>
         <Text style={{ fontSize: 16, color: '#444444', fontWeight: '500' }}>
           Size
         </Text>
@@ -179,19 +179,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingVertical: 10,
+    paddingBottom: 10,
   },
   productImage: {
     width: '100%',
-    height: 430,
+    height: 400,
     resizeMode: 'cover',
   },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
-    padding: 15,
+    // marginBottom: 10,
+    padding: 10,
   },
   title: {
     fontSize: 18,

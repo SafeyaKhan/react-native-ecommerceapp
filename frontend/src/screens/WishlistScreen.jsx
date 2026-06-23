@@ -38,9 +38,8 @@ export default WishlistScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: '#fff',
-    paddingTop: 10,
+    // paddingTop: 10,
   },
 
   emptyText: {

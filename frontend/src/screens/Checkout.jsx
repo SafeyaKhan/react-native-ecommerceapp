@@ -84,50 +84,55 @@ const CheckoutScreen = ({ navigation }) => {
       <View style={styles.header}>
         <Header showBack={true} />
       </View>
-      <FlatList
-        data={carts}
-        keyExtractor={item => item.id.toString()}
-        renderItem={renderItem}
-        ListHeaderComponent={
-          <>
-            <Text style={styles.heading}>Delivery Details</Text>
+      <View style={{ flex: 1, paddingHorizontal: 15 }}>
+        <FlatList
+          data={carts}
+          keyExtractor={item => item.id.toString()}
+          renderItem={renderItem}
+          ListHeaderComponent={
+            <>
+              <Text style={styles.heading}>Delivery Details</Text>
 
-            <TextInput
-              placeholder="Full Name"
-              style={styles.input}
-              value={name}
-              onChangeText={setName}
-            />
+              <TextInput
+                placeholder="Full Name"
+                placeholderTextColor="#999"
+                style={styles.input}
+                value={name}
+                onChangeText={setName}
+              />
 
-            <TextInput
-              placeholder="Phone Number"
-              style={styles.input}
-              value={phone}
-              onChangeText={setPhone}
-              keyboardType="phone-pad"
-            />
+              <TextInput
+                placeholder="Phone Number"
+                placeholderTextColor="#999"
+                style={styles.input}
+                value={phone}
+                onChangeText={setPhone}
+                keyboardType="phone-pad"
+              />
 
-            <TextInput
-              placeholder="Address"
-              style={[styles.input, { height: 80 }]}
-              multiline
-              value={address}
-              onChangeText={setAddress}
-            />
+              <TextInput
+                placeholder="Address"
+                placeholderTextColor="#999"
+                style={[styles.input, { height: 80 }]}
+                multiline
+                value={address}
+                onChangeText={setAddress}
+              />
 
-            <View style={styles.priceBox}>
-              <Text>Subtotal: ${subtotal.toFixed(2)}</Text>
+              <View style={styles.priceBox}>
+                <Text>Subtotal: ${subtotal.toFixed(2)}</Text>
 
-              <Text>Delivery: ${delivery}</Text>
+                <Text>Delivery: ${delivery}</Text>
 
-              <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
-            </View>
-          </>
-        }
-        ListFooterComponent={
-          <Button title="Place Order" onPress={handlePlaceOrder} />
-        }
-      />
+                <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
+              </View>
+            </>
+          }
+          ListFooterComponent={
+            <Button title="Place Order" onPress={handlePlaceOrder} />
+          }
+        />
+      </View>
     </View>
   );
 };
@@ -137,8 +142,8 @@ export default CheckoutScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
-    paddingHorizontal: 15,
+    // marginTop: 30,
+    // paddingHorizontal: 15,
   },
 
   heading: {
