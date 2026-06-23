@@ -105,3 +105,14 @@ android/.cxx/
 # React Native generated files
 android/app/debug/
 android/app/release/
+# Android build
+android/app/build/
+android/build/
+
+# React Native build outputs
+*.apk
+*.aab
+
+# CMake / native outputs
+*.so
+.cxx/
