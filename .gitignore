@@ -1,118 +1,25 @@
-# =========================
-# OS
-# =========================
-.DS_Store
-
-# =========================
-# ENV (VERY IMPORTANT)
-# =========================
-.env
-.env.*
-*.env
-
-# =========================
-# NODE
-# =========================
+# Node modules
 node_modules/
-npm-debug.log*
-yarn-error.log*
 
-# =========================
-# MOBILE (React Native)
-# =========================
-
-# Xcode
+# Build outputs (VERY IMPORTANT for React Native)
+android/app/build/
+android/build/
 ios/build/
-ios/Pods/
-ios/*.xcworkspace
-ios/*.xcodeproj/project.xcworkspace
-xcuserdata
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
 
-# Android
-android/build/
-android/app/build/
-android/.gradle/
-.gradle/
-local.properties
-*.iml
-*.keystore
-.kotlin/
-.cxx/
-
-# React Native / Metro
-*.jsbundle
-.metro-health-check*
-
-# =========================
-# BACKEND (Node.js API)
-# =========================
-backend/node_modules/
-backend/dist/
-backend/build/
-backend/.env
-
-# logs
-logs
-*.log
-
-# =========================
-# IDE
-# =========================
-.idea/
-.vscode/
-
-# =========================
-# TESTING
-# =========================
-coverage/
-
-# =========================
-# YARN (if used)
-# =========================
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
-# =========================
-# FASTLANE (optional)
-# =========================
-**/fastlane/report.xml
-**/fastlane/Preview.html
-**/fastlane/screenshots
-**/fastlane/test_output
-
-# =========================
-# RUBY / PODS
-# =========================
-**/Pods/
-vendor/bundle/
-# Android Native Build
-android/app/.cxx/
-android/app/build/
-android/.cxx/
-
-# CMake / NDK
-**/.cxx/
-**/build/
-
-# React Native generated files
-android/app/debug/
-android/app/release/
-# Android build
-android/app/build/
-android/build/
-
-# React Native build outputs
+# APK / AAB files
 *.apk
 *.aab
 
-# CMake / native outputs
+# Native compiled files
 *.so
 .cxx/
+
+# Metro / cache
+.expo/
+.expo-shared/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# OS files
+.DS_Store
