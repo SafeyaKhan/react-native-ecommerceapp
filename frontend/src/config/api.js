@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 
-const LOCAL_IP = 'http://192.168.1.33:5000/api/auth';
+const LOCAL_IP = 'http://192.168.1.28:5000/api/auth';
 const ANDROID_EMU = 'http://10.0.2.2:5000/api/auth';
 const IOS_SIM = 'http://localhost:5000/api/auth';
 
