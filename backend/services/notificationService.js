@@ -1,4 +1,4 @@
-import admin from '../firebase/firebase.js';
+import admin from '../firebase.js';
 
 export const sendNotification = async (fcmToken, title, body, data = {}) => {
   try {

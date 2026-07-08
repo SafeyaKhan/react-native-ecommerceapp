@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
+import { API } from '../config/api';
 
 const ResetPasswordScreen = ({ route, navigation }) => {
   const token = route?.params?.token;
@@ -27,10 +28,7 @@ const ResetPasswordScreen = ({ route, navigation }) => {
     }
 
     try {
-      await axios.put(
-        `http://192.168.1.33:5000/api/auth/reset-password/${token}`,
-        { password },
-      );
+      await axios.put(`${API}/reset-password/${token}`, { password });
 
       Alert.alert('Success', 'Password reset successful', [
         {

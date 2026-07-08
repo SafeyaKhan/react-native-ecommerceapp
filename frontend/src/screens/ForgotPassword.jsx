@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Button from '../components/Button';
 import axios from 'axios';
+import { API } from '../config/api';
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -23,12 +24,9 @@ const ForgotPasswordScreen = ({ navigation }) => {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        'http://192.168.1.33:5000/api/auth/forgot-password',
-        {
-          email,
-        },
-      );
+      const response = await axios.post(`${API}/forgot-password`, {
+        email,
+      });
 
       Alert.alert('Success', response.data.message);
 

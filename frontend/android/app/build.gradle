@@ -6,6 +6,8 @@ apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 
 react {
     autolinkLibrariesWithApp()
+
+    nodeExecutableAndArgs = ["/Users/dubai/.nvm/versions/node/v20.20.0/bin/node"]
 }
 
 def enableProguardInReleaseBuilds = false

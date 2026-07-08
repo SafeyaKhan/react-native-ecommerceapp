@@ -116,3 +116,23 @@ android/build/
 # CMake / native outputs
 *.so
 .cxx/
+# Firebase secrets
+serviceAccountKey.json
+firebase-adminsdk*.json
+*.pem
+
+# Environment files
+.env
+.env.*
+# Android build files
+android/.gradle/
+android/app/build/
+android/build/
+
+# React Native
+node_modules/
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+frontend/node_modules/
+

@@ -82,7 +82,12 @@ export const AuthProvider = ({ children }) => {
         password,
       });
 
-      setUser(res.data.user);
+      const normalizedUser = {
+        ...res.data.user,
+        _id: res.data.user.id || res.data.user._id,
+      };
+
+      setUser(normalizedUser);
       setToken(res.data.token);
 
       await AsyncStorage.setItem('token', res.data.token);

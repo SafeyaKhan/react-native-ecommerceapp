@@ -33,6 +33,8 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const handleLogin = async () => {
+    console.log('1. LOGIN PRESSED');
+
     setError('');
 
     if (!email || !password) {

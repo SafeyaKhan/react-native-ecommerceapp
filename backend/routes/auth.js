@@ -10,16 +10,10 @@ import {
 
 const router = express.Router();
 
-/* =========================
-   TEST ROUTE
-========================= */
 router.get('/', (req, res) => {
   res.send('Auth route working');
 });
 
-/* =========================
-   REGISTER
-========================= */
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -55,9 +49,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-/* =========================
-   LOGIN
-========================= */
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -100,15 +91,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
-/* =========================
-   PASSWORD ROUTES
-========================= */
 router.post('/forgot-password', forgotPassword);
 router.put('/reset-password/:token', resetPassword);
 
-/* =========================
-   RESET PASSWORD PAGE (HTML)
-========================= */
 router.get('/reset-password/:token', (req, res) => {
   const { token } = req.params;
 
